@@ -1,13 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { formSubmitted } from "./actions";
-
-const mapStateToProps = state => ({
-  name: state.reducer.name,
-  age: state.reducer.age,
-  email: state.reducer.email,
-  phoneNumber: state.reducer.phoneNumber
-});
+import List from "../src/components/List";
+import Data from "../src/data/index.js";
+import Submit from "../src/components/Button";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const mapDispatchToProps = dispatch => ({
   formSubmitted: () => dispatch(formSubmitted(
@@ -21,30 +18,23 @@ const mapDispatchToProps = dispatch => ({
 class RegistrationForm extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Registration Form</h1>
-        <label><b>Name</b></label>
-        <input type="text" id="name" placeholder="Enter your Name" required /><br/>
-
-        <label for="age"><b>Age</b></label>
-        <input type="number" id="age" placeholder="Enter your Age" required /><br/>
-
-        <label for="email"><b>Email</b></label>
-        <input type="text" id="email" placeholder="Enter Email" required /><br/>
-
-        <label for="phoneNumber"><b>Mobile Number</b></label>
-        <input type="number" id="phoneNumber" placeholder="Enter your mobile number" required /><br/> 
- 
-        <button onClick={this.props.formSubmitted}>ADD</button>
-        <br/>
-
-        name: {this.props.name} <br/>
-        age: {this.props.age} <br/>
-        email: {this.props.email} <br/>
-        Phone Number: {this.props.phoneNumber} <br/>
-    
-      </div>
-      )
+      <Router>
+        <div className="App">
+          <Link to="/DisplayForm">DisplayForm</Link>
+          <br />
+          <Link to="/ViewData">ViewData</Link>
+          <br /><br/>
+          <Submit onClick={this.props.formSubmitted} message="Submit" />
+          <br /><br/>
+          <hr />
+          <Route path="/DisplayForm" component={List} />
+          <Route path="/ViewData" component={Data} />
+        </div>
+      </Router>
+    );
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegistrationForm);
