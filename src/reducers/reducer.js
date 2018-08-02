@@ -2,21 +2,21 @@ const initialState = {
   name: "",
   age: "",
   email: "",
-  phno: ""
+  phoneNumber: ""
 };
-const example = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INCREMENT':
+    case 'FORM_SUBMIT':
       return {
         ...state,
         name: action.name,
         age: action.age,
         email: action.email,
-        phno: action.phno
+        phoneNumber: action.phoneNumber
       };
 
     default:
       return state;
   }
 }
-export default example;
+export default reducer;

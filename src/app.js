@@ -1,26 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addButtonClicked } from "./actions";
-
-let name,age,email,phno;
+import { formSubmitted } from "./actions";
 
 const mapStateToProps = state => ({
-  name: state.example.name,
-  age: state.example.age,
-  email: state.example.email,
-  phno: state.example.phno
+  name: state.reducer.name,
+  age: state.reducer.age,
+  email: state.reducer.email,
+  phoneNumber: state.reducer.phoneNumber
 });
 
 const mapDispatchToProps = dispatch => ({
-  addButtonClicked: () => dispatch(addButtonClicked(
+  formSubmitted: () => dispatch(formSubmitted(
     document.getElementById("name").value,
     document.getElementById("age").value,
     document.getElementById("email").value,
-    document.getElementById("phno").value
+    document.getElementById("phoneNumber").value
   )) 
 });
 
-class Example extends React.Component {
+class RegistrationForm extends React.Component {
   render() {
     return (
       <div>
@@ -34,19 +32,19 @@ class Example extends React.Component {
         <label for="email"><b>Email</b></label>
         <input type="text" id="email" placeholder="Enter Email" required /><br/>
 
-        <label for="phno"><b>Mobile Number</b></label>
-        <input type="number" id="phno" placeholder="Enter your mobile number" required /><br/> 
+        <label for="phoneNumber"><b>Mobile Number</b></label>
+        <input type="number" id="phoneNumber" placeholder="Enter your mobile number" required /><br/> 
  
-        <button onClick={this.props.addButtonClicked}>ADD</button>
+        <button onClick={this.props.formSubmitted}>ADD</button>
         <br/>
 
         name: {this.props.name} <br/>
         age: {this.props.age} <br/>
         email: {this.props.email} <br/>
-        phno: {this.props.phno} <br/>
+        Phone Number: {this.props.phoneNumber} <br/>
     
       </div>
       )
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Example);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);

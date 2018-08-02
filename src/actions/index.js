@@ -1,11 +1,11 @@
-export const addButtonClicked = (name,age,email,phno) => ({
-  type: exampleActions.ADD,
+export const formSubmitted = (name,age,email,phoneNumber) => ({
+  type: actions.SUBMIT_FORM,
   name: name,
   age: age,
   email: email,
-  phno: phno
+  phoneNumber: phoneNumber
 });
 
-export const exampleActions = {
-  ADD: 'INCREMENT'
+export const actions = {
+  SUBMIT_FORM: 'FORM_SUBMIT'
 };
